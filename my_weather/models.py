@@ -42,6 +42,7 @@ class WeatherType(str, Enum):
 class Weather:
     temperature: float
     weather_type: WeatherType
+    description: str
     sunrise: datetime
     sunset: datetime
     city: str

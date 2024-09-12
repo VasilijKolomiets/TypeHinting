@@ -20,5 +20,5 @@ if __name__ == '__main__':
     text = format_weather(weather)
     # save (logging) last `text` into specified `DataBase`
     logger = PlainFileLogger(Path().cwd() / "plain.csv")  #  33
-    #  logger = SQLiteFileLogger(Path().cwd() / 'logging.db3').save()
+    #  logger = SQLiteFileLogger(Path().cwd() / 'logging.db3')
     log_it(text, logger)
