@@ -22,7 +22,6 @@ class LoggerInitOnly:
 
     def __init__(self, file: Path):
         self._file = file
-        self._now = datetime.now()
         self._text = ""
 
 
@@ -33,7 +32,7 @@ class PlainFileLogger(LoggerInitOnly):
         """Save to the _file."""
         self._text = text[:2048]
         with open(self._file, "a", encoding="UTF-8") as f:
-            f.write(f"{self._now}\t{self._text}\n")  #  look at `\t` !!!
+            f.write(f"{datetime.now()}\t{self._text}\n")  #  look at `\t` !!!
 
 
 class SQLiteFileLogger(LoggerInitOnly):
@@ -65,7 +64,7 @@ class SQLiteFileLogger(LoggerInitOnly):
                 INSERT INTO text_logging (datetime, text)
                 VALUES (?, ?)
             """,
-                (self._now.isoformat(), self._text),
+                (datetime.now().isoformat(), self._text),
             )
             conn.commit()
 
