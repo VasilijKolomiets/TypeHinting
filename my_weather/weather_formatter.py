@@ -1,13 +1,16 @@
 from models import Weather
+import config
 
+fmt = config.weather_fmt
 
 def format_weather(weather: Weather) -> str:
     """Formats weather data in string"""
-    return (
-        f"{weather.city}, температура {weather.temperature}°C, "
-        f"{weather.weather_type.value}\n"
-        f"Схід: {weather.sunrise.strftime('%H:%M')}\n"
-        f"Захід: {weather.sunset.strftime('%H:%M')}\n"
+    return fmt.format(
+        city=weather.city,
+        temperature=weather.temperature,
+        weather_type=weather.weather_type.value,
+        sunrise=weather.sunrise,
+        sunset=weather.sunset,
     )
 
 

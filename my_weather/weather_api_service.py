@@ -8,11 +8,11 @@ import config
 from models import GeoLocation, Weather, WeatherType, Latitude, Longitude
 
 
-def get_weather_response(location: GeoLocation) -> dict:
+def get_weather_response(location: GeoLocation | None) -> dict:
     """Get response from weather service."""
-    
-    # raise ValueError("ApiServiceError - no coordinates for `get_weather_response()`")
-    return _get_openweather_response(location.latitude, location.longitude)
+    if location is not None:
+        return _get_openweather_response(location.latitude, location.longitude)
+    raise ValueError("ApiServiceError - no coordinates for `get_weather_response()`")   
 
 
 def _get_openweather_response(latitude: Latitude, longitude: Longitude) -> dict:
